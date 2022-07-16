@@ -20,7 +20,7 @@ namespace MyChess
             // init horizontal letters
             for (int w = 1; w < MapProps.MapWidth + 1; w++)
             {
-                mapFields.Add((w, MapProps.MapHeight + 1, $"{Convert.ToChar(w + 64)} "));
+                mapFields.Add((w, MapProps.MapHeight, $"{Convert.ToChar(w + 64)} "));
             }
             // init vertical numbers
             for (int h = 0; h < MapProps.MapHeight; h++)
