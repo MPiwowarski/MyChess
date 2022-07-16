@@ -19,9 +19,7 @@ namespace MyChess.Engine.Dtos
 
         public string XChar { get => (X + 1).ToString(); }
 
-        public bool IsWhite { get => X + Y % 2 == 0; }
-
-        public bool IsBlack { get => X + Y % 2 != 0; }
+        public bool IsWhite { get => (X + Y) % 2 == 0; }
 
         public string FieldColorShortcut { get => IsWhite ? "w" : "b"; }
 
