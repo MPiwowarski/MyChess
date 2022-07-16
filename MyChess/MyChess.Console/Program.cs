@@ -7,3 +7,6 @@ Console.WriteLine(string.Empty);
 
 var gameFields = Game.InitMap();
 MapDrawer.DrawRaw(gameFields);
+Console.WriteLine(string.Empty);
+MapDrawer.DrawForBlackPlayer(gameFields);
+

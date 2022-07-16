@@ -19,9 +19,9 @@ namespace MyChess
         {
             var mapFields = new List<(int x, int y, string display)>();
 
-            for (int w = 0; w < MapProps.MapWidth; w++)
+            for (int w = 0; w < MapProps.SideLenght; w++)
             {
-                for (int h = 0; h < MapProps.MapHeight; h++)
+                for (int h = 0; h < MapProps.SideLenght; h++)
                 {
                     var field = gameFields.First(x => x.X == w && x.Y == h);
                     if (field.ChessmanType == Engine.ChessmanType.None)
@@ -31,12 +31,12 @@ namespace MyChess
                 }
             }
 
-            for (int w = 0; w < MapProps.MapWidth; w++)
+            for (int x = 0; x < MapProps.SideLenght; x++)
             {
                 var rowPrint = string.Empty;
-                for (int h = 0; h < MapProps.MapHeight; h++)
+                for (int y = 0; y < MapProps.SideLenght; y++)
                 {
-                    var field = mapFields.First(f => f.x == w && f.y == h);
+                    var field = mapFields.First(f => f.x == x && f.y == y);
                     rowPrint += $"{field.display} ";
                 }
                 Console.WriteLine(rowPrint);
@@ -46,37 +46,48 @@ namespace MyChess
         public static void DrawForBlackPlayer(IEnumerable<MapFieldDto> gameFields)
         {
             var mapFields = new List<(int x, int y, string display)>();
-            mapFields.Add((0, 8, "  "));
+            var mapDisplaySideLenght = MapProps.SideLenght + 2;
+            var mapDisplayMaxArrayIndex = mapDisplaySideLenght - 1;
+
+            mapFields.Add((0, 0, "  "));
+            mapFields.Add((mapDisplayMaxArrayIndex, mapDisplayMaxArrayIndex, "  "));
+            mapFields.Add((mapDisplayMaxArrayIndex, 0, "  "));
+            mapFields.Add((0, mapDisplayMaxArrayIndex, "  "));
+
+            // init vertical numbers
+            for (int y = 0; y < MapProps.SideLenght; y++)
+            {
+                mapFields.Add((0, y + 1, $"{y + 1} "));
+                mapFields.Add((mapDisplaySideLenght - 1, y + 1, $"{y + 1} "));
+            }
 
             // init horizontal letters
-            for (int w = 1; w < MapProps.MapWidth + 1; w++)
+            for (int x = 0; x < MapProps.SideLenght; x++)
             {
-                mapFields.Add((w, MapProps.MapHeight, $"{Convert.ToChar(w + 64)} "));
-            }
-            // init vertical numbers
-            for (int h = 0; h < MapProps.MapHeight; h++)
-            {
-                mapFields.Add((MapProps.MapHeight + 1, h, $"{MapProps.MapHeight - h} "));
+                mapFields.Add((x + 1, 0, $"{Convert.ToChar(64 + MapProps.SideLenght - x)} "));
+                mapFields.Add((x + 1, mapDisplaySideLenght - 1, $"{Convert.ToChar(64 + MapProps.SideLenght - x)} "));
             }
 
-            for (int w = 1; w < MapProps.MapWidth + 1; w++)
+
+            for (int x = 1; x < MapProps.SideLenght + 1; x++)
             {
-                for (int h = 0; h < MapProps.MapHeight; h++)
+                for (int y = 1; y < MapProps.SideLenght + 1; y++)
                 {
-                    var field = gameFields.First(x => x.X == w - 1 && x.Y == h);
+                    var field = gameFields.First(f => f.X == x - 1 && f.Y == y - 1);
                     if (field.ChessmanType == Engine.ChessmanType.None)
-                        mapFields.Add((w, h, $"{field.FieldColorShortcut} "));
+                        mapFields.Add((x, y, $"{field.FieldColorShortcut} "));
                     else
-                        mapFields.Add((w, h, $"{field.PlayerColorShortcut}{field.ChessmanType.GetAttribute<DisplayAttribute>()?.Name}"));
+                        mapFields.Add((x, y, $"{field.PlayerColorShortcut}{field.ChessmanType.GetAttribute<DisplayAttribute>()?.Name}"));
                 }
             }
 
-            for (int w = 0; w < MapProps.MapWidth + 1; w++)
+
+            for (int x = 0; x < mapDisplaySideLenght; x++)
             {
                 var rowPrint = string.Empty;
-                for (int h = 0; h < MapProps.MapHeight + 1; h++)
+                for (int y = 0; y < mapDisplaySideLenght; y++)
                 {
-                    var field = mapFields.First(f => f.x == w && f.y == h);
+                    var field = mapFields.First(f => f.x == x && f.y == y);
                     rowPrint += $"{field.display} ";
                 }
                 Console.WriteLine(rowPrint);

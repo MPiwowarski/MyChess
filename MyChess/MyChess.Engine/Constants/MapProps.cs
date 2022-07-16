@@ -8,7 +8,6 @@ namespace MyChess.Engine.Constants
 {
     public static class MapProps
     {
-        public static int MapWidth = 8;
-        public static int MapHeight = 8;
+        public const int SideLenght = 8;
     }
 }

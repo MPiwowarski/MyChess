@@ -25,7 +25,7 @@ namespace MyChess.Engine
         private static void InitWhitePlayerChessmen(List<MapFieldDto> gameMap)
         {
             // init pawns
-            for (int i = 0; i < MapProps.MapWidth; i++)
+            for (int i = 0; i < MapProps.SideLenght; i++)
             {
                gameMap.Where(field => field.X == 1 && field.Y == i)
                     .Select(field => { field.ChessmanType = ChessmanType.Pawn; field.PlayerColor = PlayerColor.White; return field; })
@@ -70,7 +70,7 @@ namespace MyChess.Engine
         private static void InitBlackPlayerChessmen(List<MapFieldDto> gameMap)
         {
             // init pawns
-            for (int i = 0; i < MapProps.MapWidth; i++)
+            for (int i = 0; i < MapProps.SideLenght; i++)
             {
                 gameMap.Where(field => field.X == MapArrayLastIndex - 1 && field.Y == i)
                      .Select(field => { field.ChessmanType = ChessmanType.Pawn; field.PlayerColor = PlayerColor.Black; return field; })
@@ -114,9 +114,9 @@ namespace MyChess.Engine
 
         private static void CreateEmptyMap(List<MapFieldDto> gameMap)
         {
-            for (int w = 0; w < MapProps.MapWidth; w++)
+            for (int w = 0; w < MapProps.SideLenght; w++)
             {
-                for (int h = 0; h < MapProps.MapHeight; h++)
+                for (int h = 0; h < MapProps.SideLenght; h++)
                 {
                     gameMap.Add(new MapFieldDto()
                     {
