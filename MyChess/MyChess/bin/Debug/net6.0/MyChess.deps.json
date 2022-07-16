@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MyChess/1.0.0": {
+        "dependencies": {
+          "MyChess.Engine": "1.0.0"
+        },
+        "runtime": {
+          "MyChess.dll": {}
+        }
+      },
+      "MyChess.Engine/1.0.0": {
+        "runtime": {
+          "MyChess.Engine.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MyChess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MyChess.Engine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
