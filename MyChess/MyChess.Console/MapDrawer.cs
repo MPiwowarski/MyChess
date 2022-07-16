@@ -15,17 +15,17 @@ namespace MyChess
         public static void Draw(IEnumerable<MapFieldDto> gameFields)
         {
             var mapFields = new List<(int x, int y, string display)>();
-            mapFields.Add((0, 0, "  "));
+            mapFields.Add((0, 8, "  "));
 
             // init horizontal letters
             for (int w = 1; w < MapProps.MapWidth + 1; w++)
             {
-                mapFields.Add((w, 0, $"{Convert.ToChar(w + 64)} "));
+                mapFields.Add((w, MapProps.MapHeight + 1, $"{Convert.ToChar(w + 64)} "));
             }
             // init vertical numbers
-            for (int h = 1; h < MapProps.MapHeight + 1; h++)
+            for (int h = 0; h < MapProps.MapHeight; h++)
             {
-                mapFields.Add((0, h, $"{h} "));
+                mapFields.Add((0, h, $"{MapProps.MapHeight - h} "));
             }
 
             for (int w = 0; w < MapProps.MapWidth; w++)

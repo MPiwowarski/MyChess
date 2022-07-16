@@ -8,11 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="MapDrawer.cs" />
-    <Compile Include="Program.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MyChess.Common\MyChess.Common.csproj" />
     <ProjectReference Include="..\MyChess.Engine\MyChess.Engine.csproj" />
   </ItemGroup>
