@@ -1,20 +1,19 @@
-﻿using MyChess.Engine.Dtos;
+﻿using MyChess.Engine.Constants;
+using MyChess.Engine.Dtos;
 
 namespace MyChess.Engine
 {
     public static class Game
     {
-        public static int MapWidth = 8;
-        public static int MapHeight = 8;
 
         /// <summary>
         /// The map array starts at element [0,0] and ends up at [7,7]
         /// </summary>
         public static int MapArrayLastIndex = 7;
 
-        public static List<GameMapDto> InitMap()
+        public static List<MapFieldDto> InitMap()
         {
-            var gameMap = new List<GameMapDto>();
+            var gameMap = new List<MapFieldDto>();
 
             CreateEmptyMap(gameMap);
             InitWhitePlayerChessmen(gameMap);
@@ -23,10 +22,10 @@ namespace MyChess.Engine
             return gameMap;
         }
 
-        private static void InitWhitePlayerChessmen(List<GameMapDto> gameMap)
+        private static void InitWhitePlayerChessmen(List<MapFieldDto> gameMap)
         {
             // init pawns
-            for (int i = 0; i < MapWidth; i++)
+            for (int i = 0; i < MapProps.MapWidth; i++)
             {
                gameMap.Where(field => field.X == i && field.Y == 0)
                     .Select(field => { field.ChessmanType = ChessmanType.Pawn; field.PlayerColor = PlayerColor.White; return field; })
@@ -68,10 +67,10 @@ namespace MyChess.Engine
                 .ToList();
         }
 
-        private static void InitBlackPlayerChessmen(List<GameMapDto> gameMap)
+        private static void InitBlackPlayerChessmen(List<MapFieldDto> gameMap)
         {
             // init pawns
-            for (int i = 0; i < MapWidth; i++)
+            for (int i = 0; i < MapProps.MapWidth; i++)
             {
                 gameMap.Where(field => field.X == i && field.Y == MapArrayLastIndex - 1)
                      .Select(field => { field.ChessmanType = ChessmanType.Pawn; field.PlayerColor = PlayerColor.Black; return field; })
@@ -113,13 +112,13 @@ namespace MyChess.Engine
                 .ToList();
         }
 
-        private static void CreateEmptyMap(List<GameMapDto> gameMap)
+        private static void CreateEmptyMap(List<MapFieldDto> gameMap)
         {
-            for (int w = 0; w < MapWidth; w++)
+            for (int w = 0; w < MapProps.MapWidth; w++)
             {
-                for (int h = 0; h < MapHeight; h++)
+                for (int h = 0; h < MapProps.MapHeight; h++)
                 {
-                    gameMap.Add(new GameMapDto()
+                    gameMap.Add(new MapFieldDto()
                     {
                         X = w,
                         Y = h,

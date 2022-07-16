@@ -1,5 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using MyChess;
 using MyChess.Engine;
 
 Console.WriteLine("Welcome to MyChess game!");
-Game.InitMap();
+Console.WriteLine(string.Empty);
+
+var gameFields = Game.InitMap();
+MapDrawer.Draw(gameFields);

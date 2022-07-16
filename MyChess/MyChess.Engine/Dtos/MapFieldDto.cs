@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyChess.Engine.Dtos
 {
-    public class GameMapDto
+    public class MapFieldDto
     {
         /// <summary>
         /// X co-ordinate; starts with 0 as it refers to array
@@ -19,9 +19,11 @@ namespace MyChess.Engine.Dtos
 
         public string XChar { get => (X + 1).ToString(); }
 
-        public bool IsWhite { get => X + Y % 2 == 0;  }
+        public bool IsWhite { get => X + Y % 2 == 0; }
 
         public bool IsBlack { get => X + Y % 2 != 0; }
+
+        public string FieldColorShortcut { get => IsWhite ? "w" : "b"; }
 
         public string YChar
         {
@@ -32,5 +34,7 @@ namespace MyChess.Engine.Dtos
         public ChessmanType ChessmanType { get; set; }
 
         public PlayerColor PlayerColor { get; set; }
+
+        public string PlayerColorShortcut { get => PlayerColor == PlayerColor.White ? "w" : "b"; }
     }
 }
