@@ -12,6 +12,34 @@ namespace MyChess
 {
     public static class MapDrawer
     {
+        public static void DrawRawForBlackPlayer(IEnumerable<MapFieldDto> gameFields)
+        {
+            var mapFields = new List<(int x, int y, string display)>();
+
+            for (int w = 0; w < MapProps.MapWidth; w++)
+            {
+                for (int h = 0; h < MapProps.MapHeight; h++)
+                {
+                    var field = gameFields.First(x => x.X == w && x.Y == h);
+                    if (field.ChessmanType == Engine.ChessmanType.None)
+                        mapFields.Add((w, h, $"{field.FieldColorShortcut} "));
+                    else
+                        mapFields.Add((w, h, $"{field.PlayerColorShortcut}{field.ChessmanType.GetAttribute<DisplayAttribute>()?.Name}"));
+                }
+            }
+
+            for (int w = 0; w < MapProps.MapWidth; w++)
+            {
+                var rowPrint = string.Empty;
+                for (int h = 0; h < MapProps.MapHeight; h++)
+                {
+                    var field = mapFields.First(f => f.x == w && f.y == h);
+                    rowPrint += $"{field.display} ";
+                }
+                Console.WriteLine(rowPrint);
+            }
+        }
+
         public static void Draw(IEnumerable<MapFieldDto> gameFields)
         {
             var mapFields = new List<(int x, int y, string display)>();
