@@ -25,18 +25,18 @@ namespace MyChess
             // init vertical numbers
             for (int h = 0; h < MapProps.MapHeight; h++)
             {
-                mapFields.Add((0, h, $"{MapProps.MapHeight - h} "));
+                mapFields.Add((MapProps.MapHeight + 1, h, $"{MapProps.MapHeight - h} "));
             }
 
-            for (int w = 0; w < MapProps.MapWidth; w++)
+            for (int w = 1; w < MapProps.MapWidth + 1; w++)
             {
                 for (int h = 0; h < MapProps.MapHeight; h++)
                 {
-                    var field = gameFields.First(x => x.X == w && x.Y == h);
+                    var field = gameFields.First(x => x.X == w - 1 && x.Y == h);
                     if (field.ChessmanType == Engine.ChessmanType.None)
-                        mapFields.Add((w + 1, h + 1, $"{field.FieldColorShortcut} "));
+                        mapFields.Add((w, h, $"{field.FieldColorShortcut} "));
                     else
-                        mapFields.Add((w + 1, h + 1, $"{field.PlayerColorShortcut}{field.ChessmanType.GetAttribute<DisplayAttribute>()?.Name}"));
+                        mapFields.Add((w, h, $"{field.PlayerColorShortcut}{field.ChessmanType.GetAttribute<DisplayAttribute>()?.Name}"));
                 }
             }
 
