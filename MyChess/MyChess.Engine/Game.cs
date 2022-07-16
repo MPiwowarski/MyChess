@@ -17,7 +17,7 @@ namespace MyChess.Engine
 
             CreateEmptyMap(gameMap);
             InitWhitePlayerChessmen(gameMap);
-            InitWhitePlayerChessmen(gameMap);
+            InitBlackPlayerChessmen(gameMap);
 
             return gameMap;
         }
@@ -27,7 +27,7 @@ namespace MyChess.Engine
             // init pawns
             for (int i = 0; i < MapProps.MapWidth; i++)
             {
-               gameMap.Where(field => field.X == i && field.Y == 0)
+               gameMap.Where(field => field.X == 1 && field.Y == i)
                     .Select(field => { field.ChessmanType = ChessmanType.Pawn; field.PlayerColor = PlayerColor.White; return field; })
                     .ToList();
             }
@@ -57,12 +57,12 @@ namespace MyChess.Engine
                 .ToList();
 
             // init queen
-            gameMap.Where(field => field.X == 0 && field.Y == 4)
+            gameMap.Where(field => field.X == 0 && field.Y == 3)
                 .Select(field => { field.ChessmanType = ChessmanType.Queen; field.PlayerColor = PlayerColor.White; return field; })
                 .ToList();
 
             // init king
-            gameMap.Where(field => field.X == 0 && field.Y == 5)
+            gameMap.Where(field => field.X == 0 && field.Y == 4)
                 .Select(field => { field.ChessmanType = ChessmanType.King; field.PlayerColor = PlayerColor.White; return field; })
                 .ToList();
         }
@@ -72,7 +72,7 @@ namespace MyChess.Engine
             // init pawns
             for (int i = 0; i < MapProps.MapWidth; i++)
             {
-                gameMap.Where(field => field.X == i && field.Y == MapArrayLastIndex - 1)
+                gameMap.Where(field => field.X == MapArrayLastIndex - 1 && field.Y == i)
                      .Select(field => { field.ChessmanType = ChessmanType.Pawn; field.PlayerColor = PlayerColor.Black; return field; })
                      .ToList();
             }
@@ -102,12 +102,12 @@ namespace MyChess.Engine
                 .ToList();
 
             // init queen
-            gameMap.Where(field => field.X == MapArrayLastIndex && field.Y == 4)
+            gameMap.Where(field => field.X == MapArrayLastIndex && field.Y == 3)
                 .Select(field => { field.ChessmanType = ChessmanType.Queen; field.PlayerColor = PlayerColor.Black; return field; })
                 .ToList();
 
             // init king
-            gameMap.Where(field => field.X == MapArrayLastIndex && field.Y == 5)
+            gameMap.Where(field => field.X == MapArrayLastIndex && field.Y == 4)
                 .Select(field => { field.ChessmanType = ChessmanType.King; field.PlayerColor = PlayerColor.Black; return field; })
                 .ToList();
         }
