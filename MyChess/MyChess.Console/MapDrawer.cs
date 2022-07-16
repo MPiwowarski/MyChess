@@ -12,7 +12,10 @@ namespace MyChess
 {
     public static class MapDrawer
     {
-        public static void DrawRawForBlackPlayer(IEnumerable<MapFieldDto> gameFields)
+        /// <summary>
+        /// The raw display for black player is a default one as iteration always starts from the top left corner
+        /// </summary>
+        public static void DrawRaw(IEnumerable<MapFieldDto> gameFields)
         {
             var mapFields = new List<(int x, int y, string display)>();
 
@@ -40,7 +43,7 @@ namespace MyChess
             }
         }
 
-        public static void Draw(IEnumerable<MapFieldDto> gameFields)
+        public static void DrawForBlackPlayer(IEnumerable<MapFieldDto> gameFields)
         {
             var mapFields = new List<(int x, int y, string display)>();
             mapFields.Add((0, 8, "  "));
