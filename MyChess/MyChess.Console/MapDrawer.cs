@@ -68,7 +68,6 @@ namespace MyChess
                 mapFields.Add((x + 1, mapDisplaySideLenght - 1, $"{Convert.ToChar(64 + MapProps.SideLenght - x)} "));
             }
 
-
             for (int x = 1; x < MapProps.SideLenght + 1; x++)
             {
                 for (int y = 1; y < MapProps.SideLenght + 1; y++)
