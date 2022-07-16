@@ -57,15 +57,15 @@ namespace MyChess
             // init vertical numbers
             for (int y = 0; y < MapProps.SideLenght; y++)
             {
-                mapFields.Add((0, y + 1, $"{y + 1} "));
-                mapFields.Add((mapDisplaySideLenght - 1, y + 1, $"{y + 1} "));
+                mapFields.Add((0, y + 1, $"{Convert.ToChar(64 + MapProps.SideLenght - y)} "));
+                mapFields.Add((mapDisplaySideLenght - 1, y + 1, $"{Convert.ToChar(64 + MapProps.SideLenght - y)} "));
             }
 
             // init horizontal letters
             for (int x = 0; x < MapProps.SideLenght; x++)
             {
-                mapFields.Add((x + 1, 0, $"{Convert.ToChar(64 + MapProps.SideLenght - x)} "));
-                mapFields.Add((x + 1, mapDisplaySideLenght - 1, $"{Convert.ToChar(64 + MapProps.SideLenght - x)} "));
+                mapFields.Add((x + 1, 0, $"{x + 1} "));
+                mapFields.Add((x + 1, mapDisplaySideLenght - 1, $"{x + 1} "));
             }
 
             for (int x = 1; x < MapProps.SideLenght + 1; x++)
