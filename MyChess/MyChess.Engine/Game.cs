@@ -25,7 +25,8 @@ namespace MyChess.Engine
                 {
                     if (to.y < from.y)
                         throw new Exception(ErrorMessage.PawnBackwardMove);
-
+                    if (to.y == from.y && to.x != from.x)
+                        throw new Exception(ErrorMessage.PawnSideMove);
                 }
             }
             else
@@ -42,6 +43,7 @@ namespace MyChess.Engine
         public const string InvalidMove = "Invalid Move";
 
         public const string PawnBackwardMove = "Pawn Cannot Move Backward";
+        public const string PawnSideMove = "Pawn Cannot Move Sides";
 
     }
 
