@@ -24,7 +24,7 @@ namespace MyChess.Tests.ConsoleTests
                 { "bR", "bK","bB", "bQ","bM", "bB","bK", "bR" }
             };
 
-            var fields = MapDrawer.DrawDefaultMap(Game.InitMap());
+            var fields = MapDrawer.DrawDefaultMap(MapCreator.InitMap());
             for (int x = 0; x < MapProps.SideLenght; x++)
             {
                 for (int y = 0; y < MapProps.SideLenght; y++)
@@ -52,7 +52,7 @@ namespace MyChess.Tests.ConsoleTests
                 { "  ","H ", "G ","F ", "E ","D ", "C ","B ", "A ", "  " },
             };
 
-            var fields = MapDrawer.DrawForBlackPlayer(Game.InitMap());
+            var fields = MapDrawer.DrawForBlackPlayer(MapCreator.InitMap());
             for (int x = 0; x < MapDrawer.MapDisplaySideLenght; x++)
             {
                 for (int y = 0; y < MapDrawer.MapDisplaySideLenght; y++)

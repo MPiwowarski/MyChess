@@ -5,7 +5,7 @@ using MyChess.Engine;
 Console.WriteLine("Welcome to MyChess game!");
 Console.WriteLine(string.Empty);
 
-var gameFields = Game.InitMap();
+var gameFields = MapCreator.InitMap();
 MapDrawer.DrawDefaultMap(gameFields);
 Console.WriteLine(string.Empty);
 MapDrawer.DrawForBlackPlayer(gameFields);

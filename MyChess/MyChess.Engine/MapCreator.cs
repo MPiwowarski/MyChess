@@ -3,7 +3,7 @@ using MyChess.Engine.Dtos;
 
 namespace MyChess.Engine
 {
-    public static class Game
+    public static class MapCreator
     {
 
         /// <summary>

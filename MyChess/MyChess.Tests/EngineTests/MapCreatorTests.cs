@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyChess.Tests.EngineTests
 {
-    public class GameTests
+    public class MapCreatorTests
     {
         public string[,] ExpectedMap = new string[MapProps.SideLenght, MapProps.SideLenght] {
             { "wR", "wK","wB", "wQ","wM", "wB","wK", "wR" },
@@ -24,7 +24,7 @@ namespace MyChess.Tests.EngineTests
         [Test]
         public void InitMap_should_return_proper_fields()
         {
-            var fields = Game.InitMap();
+            var fields = MapCreator.InitMap();
             for (int x = 0; x < MapProps.SideLenght; x++)
             {
                 for (int y = 0; y < MapProps.SideLenght; y++)
