@@ -6,7 +6,7 @@ Console.WriteLine("Welcome to MyChess game!");
 Console.WriteLine(string.Empty);
 
 var gameFields = Game.InitMap();
-MapDrawer.DrawRaw(gameFields);
+MapDrawer.DrawDefaultMap(gameFields);
 Console.WriteLine(string.Empty);
 MapDrawer.DrawForBlackPlayer(gameFields);
 

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyChess.Common;
 
 namespace MyChess.Engine.Dtos
 {
@@ -34,5 +36,13 @@ namespace MyChess.Engine.Dtos
         public PlayerColor PlayerColor { get; set; }
 
         public string PlayerColorShortcut { get => PlayerColor == PlayerColor.White ? "w" : "b"; }
+
+        public string Display { 
+            get => ChessmanType == ChessmanType.None ? 
+                $"{FieldColorShortcut} " : 
+                $"{PlayerColorShortcut}{ChessmanType.GetAttribute<DisplayAttribute>()?.Name}"; 
+        }
+
+
     }
 }

@@ -12,10 +12,13 @@ namespace MyChess
 {
     public static class MapDrawer
     {
+        public const int MapDisplaySideLenght = MapProps.SideLenght + 2;
+        public const int MapDisplayMaxArrayIndex = MapDisplaySideLenght - 1;
+
         /// <summary>
         /// The raw display for black player is a default one as iteration always starts from the top left corner
         /// </summary>
-        public static void DrawRaw(IEnumerable<MapFieldDto> gameFields)
+        public static IEnumerable<(int x, int y, string display)> DrawDefaultMap(IEnumerable<MapFieldDto> gameFields)
         {
             var mapFields = new List<(int x, int y, string display)>();
 
@@ -41,31 +44,32 @@ namespace MyChess
                 }
                 Console.WriteLine(rowPrint);
             }
+
+            return mapFields;
         }
 
-        public static void DrawForBlackPlayer(IEnumerable<MapFieldDto> gameFields)
+        public static IEnumerable<(int x, int y, string display)> DrawForBlackPlayer(IEnumerable<MapFieldDto> gameFields)
         {
-            var mapFields = new List<(int x, int y, string display)>();
-            var mapDisplaySideLenght = MapProps.SideLenght + 2;
-            var mapDisplayMaxArrayIndex = mapDisplaySideLenght - 1;
-
-            mapFields.Add((0, 0, "  "));
-            mapFields.Add((mapDisplayMaxArrayIndex, mapDisplayMaxArrayIndex, "  "));
-            mapFields.Add((mapDisplayMaxArrayIndex, 0, "  "));
-            mapFields.Add((0, mapDisplayMaxArrayIndex, "  "));
+            var mapFields = new List<(int x, int y, string display)>
+            {
+                (0, 0, "  "),
+                (MapDisplayMaxArrayIndex, MapDisplayMaxArrayIndex, "  "),
+                (MapDisplayMaxArrayIndex, 0, "  "),
+                (0, MapDisplayMaxArrayIndex, "  ")
+            };
 
             // init vertical numbers
             for (int y = 0; y < MapProps.SideLenght; y++)
             {
                 mapFields.Add((0, y + 1, $"{Convert.ToChar(64 + MapProps.SideLenght - y)} "));
-                mapFields.Add((mapDisplaySideLenght - 1, y + 1, $"{Convert.ToChar(64 + MapProps.SideLenght - y)} "));
+                mapFields.Add((MapDisplaySideLenght - 1, y + 1, $"{Convert.ToChar(64 + MapProps.SideLenght - y)} "));
             }
 
             // init horizontal letters
             for (int x = 0; x < MapProps.SideLenght; x++)
             {
                 mapFields.Add((x + 1, 0, $"{x + 1} "));
-                mapFields.Add((x + 1, mapDisplaySideLenght - 1, $"{x + 1} "));
+                mapFields.Add((x + 1, MapDisplaySideLenght - 1, $"{x + 1} "));
             }
 
             for (int x = 1; x < MapProps.SideLenght + 1; x++)
@@ -73,24 +77,22 @@ namespace MyChess
                 for (int y = 1; y < MapProps.SideLenght + 1; y++)
                 {
                     var field = gameFields.First(f => f.X == x - 1 && f.Y == y - 1);
-                    if (field.ChessmanType == Engine.ChessmanType.None)
-                        mapFields.Add((x, y, $"{field.FieldColorShortcut} "));
-                    else
-                        mapFields.Add((x, y, $"{field.PlayerColorShortcut}{field.ChessmanType.GetAttribute<DisplayAttribute>()?.Name}"));
+                    mapFields.Add((x, y, field.Display));
                 }
             }
 
-
-            for (int x = 0; x < mapDisplaySideLenght; x++)
+            for (int x = 0; x < MapDisplaySideLenght; x++)
             {
                 var rowPrint = string.Empty;
-                for (int y = 0; y < mapDisplaySideLenght; y++)
+                for (int y = 0; y < MapDisplaySideLenght; y++)
                 {
                     var field = mapFields.First(f => f.x == x && f.y == y);
                     rowPrint += $"{field.display} ";
                 }
                 Console.WriteLine(rowPrint);
             }
+
+            return mapFields;
         }
     }
 }

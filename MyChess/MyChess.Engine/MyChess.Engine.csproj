@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyChess.Common\MyChess.Common.csproj" />
+  </ItemGroup>
+
 </Project>
