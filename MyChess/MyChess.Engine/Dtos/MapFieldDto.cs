@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyChess.Common;
+using MyChess.Engine.Constants;
 
 namespace MyChess.Engine.Dtos
 {

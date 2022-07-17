@@ -27,7 +27,7 @@ namespace MyChess
                 for (int h = 0; h < MapProps.SideLenght; h++)
                 {
                     var field = gameFields.First(x => x.X == w && x.Y == h);
-                    if (field.ChessmanType == Engine.ChessmanType.None)
+                    if (field.ChessmanType == ChessmanType.None)
                         mapFields.Add((w, h, $"{field.FieldColorShortcut} "));
                     else
                         mapFields.Add((w, h, $"{field.PlayerColorShortcut}{field.ChessmanType.GetAttribute<DisplayAttribute>()?.Name}"));

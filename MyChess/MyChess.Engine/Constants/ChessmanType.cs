@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyChess.Engine
+namespace MyChess.Engine.Constants
 {
     public static class ChessmanTypeName
     {
