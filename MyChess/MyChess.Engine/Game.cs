@@ -10,7 +10,7 @@ namespace MyChess.Engine
 {
     public class Game
     {
-        public void MakeMove(List<MapFieldDto> gameMap, PlayerColor playerColor,
+        public static List<MapFieldDto> MakeMove(List<MapFieldDto> gameMap, PlayerColor playerColor,
             (VerticalFieldLabel x, HorizontalFieldLabel y) from, (VerticalFieldLabel x, HorizontalFieldLabel y) to)
         {
             var chessman = gameMap.FirstOrDefault(f => f.X == (int)from.x && f.Y == (int)from.y && f.PlayerColor == playerColor);
@@ -28,13 +28,14 @@ namespace MyChess.Engine
                     if (to.y == from.y && to.x != from.x)
                         throw new Exception(ErrorMessage.PawnSideMove);
 
-                    gameMap.Where(f => f.X == (int)from.x && f.Y == (int)from.y && f.PlayerColor == playerColor)
+                    // todo: simplify and fix the update
+                    gameMap.Where(f => f.X == (int)from.x && f.Y == (int)from.y)
                         .Select(UpdateMapFieldForWhitePlayer(ChessmanType.None))
                         .ToList();
 
-                    gameMap.Where(f => f.X == (int)to.x && f.Y == (int)to.y)
-                        .Select(UpdateMapFieldForWhitePlayer(ChessmanType.Pawn))
-                        .ToList();
+                    //gameMap.Where(f => f.X == (int)to.x && f.Y == (int)to.y)
+                    //    .Select(UpdateMapFieldForWhitePlayer(ChessmanType.Pawn))
+                    //    .ToList();
                 }
             }
             else
@@ -42,7 +43,7 @@ namespace MyChess.Engine
 
             }
 
-
+            return gameMap;
         }
 
         private static Func<MapFieldDto, MapFieldDto> UpdateMapFieldForWhitePlayer(ChessmanType chessmanType)
