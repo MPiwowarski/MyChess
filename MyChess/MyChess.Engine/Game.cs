@@ -27,6 +27,14 @@ namespace MyChess.Engine
                         throw new Exception(ErrorMessage.PawnBackwardMove);
                     if (to.y == from.y && to.x != from.x)
                         throw new Exception(ErrorMessage.PawnSideMove);
+
+                    gameMap.Where(f => f.X == (int)from.x && f.Y == (int)from.y && f.PlayerColor == playerColor)
+                        .Select(UpdateMapFieldForWhitePlayer(ChessmanType.None))
+                        .ToList();
+
+                    gameMap.Where(f => f.X == (int)to.x && f.Y == (int)to.y)
+                        .Select(UpdateMapFieldForWhitePlayer(ChessmanType.Pawn))
+                        .ToList();
                 }
             }
             else
@@ -35,6 +43,11 @@ namespace MyChess.Engine
             }
 
 
+        }
+
+        private static Func<MapFieldDto, MapFieldDto> UpdateMapFieldForWhitePlayer(ChessmanType chessmanType)
+        {
+            return field => { field.ChessmanType = chessmanType; field.PlayerColor = PlayerColor.White; return field; };
         }
     }
 
